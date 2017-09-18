@@ -8,12 +8,16 @@ use backend\models\newssearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use yii\web\UploadedFile;
 /**
  * NewsController implements the CRUD actions for news model.
  */
 class NewsController extends Controller
 {
+    public function beforeAction($action) { 
+     $this->enableCsrfValidation = false; 
+    return parent::beforeAction($action);
+    }
     /**
      * @inheritdoc
      */
@@ -65,8 +69,23 @@ class NewsController extends Controller
     {
         $model = new news();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->news_id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $model->create_date = date('Y-m-d H:i:s');
+            $model->modified_date = date('Y-m-d H:i:s');
+            $model->news_view = 0;
+            $model->news_type_lang = '1';
+            $model->active = 'y';
+            $model->user_id = 1;
+             $file = UploadedFile::getInstance($model,'news_imagepath');
+            if($file->size!=0){
+                $model->news_image = $file->basename.'.'.$file->extension;
+                $file->saveAs('../uploads/news/'.$model->news_type_id.'/'.$file->basename.'.'.$file->extension);
+            }
+            
+            if($model->save()){
+                $model->save();
+            }
+            return $this->redirect(['index']);
         } else {
             return $this->render('create', [
                 'model' => $model,
