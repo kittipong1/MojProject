@@ -18,6 +18,7 @@ use Yii;
  * @property string $modified_date
  * @property integer $news_view
  * @property string $active
+ * @property string $news_description
  *
  * @property NewsType $newsType
  */
@@ -26,6 +27,7 @@ class News extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    public $news_imagepath;
     public static function tableName()
     {
         return 'news';
@@ -38,10 +40,11 @@ class News extends \yii\db\ActiveRecord
     {
         return [
             [['news_type_id', 'user_id', 'news_type_lang', 'news_view'], 'integer'],
-            [['news_image'], 'string'],
+            [['news_image', 'news_description'], 'string'],
             [['create_date', 'modified_date'], 'safe'],
             [['news_name'], 'string', 'max' => 200],
             [['news_explain', 'active'], 'string', 'max' => 255],
+            [['news_imagepath'],'file','skipOnEmpty'=>true,'on' => 'update','extensions'=>'jpg,png,gif'],
             [['news_type_id'], 'exist', 'skipOnError' => true, 'targetClass' => NewsType::className(), 'targetAttribute' => ['news_type_id' => 'news_type_id']],
         ];
     }
@@ -56,13 +59,15 @@ class News extends \yii\db\ActiveRecord
             'news_type_id' => 'News Type ID',
             'user_id' => 'id admin',
             'news_type_lang' => 'News Type Lang',
-            'news_name' => 'News Name',
-            'news_explain' => 'News Explain',
-            'news_image' => 'News Image',
+            'news_name' => 'ชื่อข่าว',
+            'news_explain' => 'รายละเอียดข่าวสารย่อย (intro)',
+            'news_image' => 'รูปข่าวหน้าปก',
             'create_date' => 'Create Date',
             'modified_date' => 'Modified Date',
             'news_view' => 'News View',
             'active' => 'Active',
+            'news_description' => 'รายละเอียดข่าวสาร',
+            'news_imagepath'=>'รูปข่าว'
         ];
     }
 
