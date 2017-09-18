@@ -19,7 +19,7 @@ class imagesearch extends image
     {
         return [
             [['image_id', 'ref_id', 'sorting'], 'integer'],
-            [['image_name', 'image', 'path', 'status', 'create_date', 'modified_date'], 'safe'],
+            [['image_name', 'path', 'status', 'create_date', 'modified_date'], 'safe'],
         ];
     }
 
@@ -67,7 +67,6 @@ class imagesearch extends image
         ]);
 
         $query->andFilterWhere(['like', 'image_name', $this->image_name])
-            ->andFilterWhere(['like', 'image', $this->image])
             ->andFilterWhere(['like', 'path', $this->path])
             ->andFilterWhere(['like', 'status', $this->status]);
 
