@@ -39,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'format'=>'html',
             'value'=> function($model){
                 if($model->path!=''){
-                    return '<img src="../uploads/images/'.$model->path.'" style="width: 200px;height: 200px;" align="center">';
+                    return '<video src="../uploads/images/'.$model->path.'" style="width: 200px;height: 200px;"';
                 }
             }],
              ['attribute'=>'status',
