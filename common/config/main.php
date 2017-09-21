@@ -6,5 +6,11 @@ return [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+
+    ],
+    'aliases' => [
+        '@uploads'=>'@appRoot/uploads',
+        '@module'=>'@common/modules',
+        '@site'=>dirname(dirname(dirname(__DIR__)))
     ],
 ];

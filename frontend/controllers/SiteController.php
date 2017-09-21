@@ -12,7 +12,10 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
-
+use yii\helpers\ArrayHelper;
+use app\models\News;
+use app\models\album;
+use app\models\image;
 /**
  * Site controller
  */
@@ -72,7 +75,64 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $newsall = News::find()->all();
+        $news = array();
+        foreach ($newsall as $key => $value) {
+            $news[$key] = $value;
+        }
+        return $this->render('index',[
+               'news'=>$news,
+            ]);
+            
+    }
+
+    public function actionAboutus()
+    {
+        return $this->render('aboutus');
+    }
+     public function actionKnowledge()
+    {
+        return $this->render('knowledge');
+    }
+     public function actionGallery()
+    {
+        $albumall = album::find()->all();
+        $album = array();
+        foreach ($albumall as $key => $value) {
+            $album[$key] = $value;
+        }
+        return $this->render('gallery',[
+                'album'=>$album,
+            ]);
+    }
+     public function actionNews()
+    {
+        return $this->render('news');
+    }
+     public function actionPhoto($id)
+    {
+        $image = image::find()->where(['ref_id'=>$id])->all();
+        $img = array();
+        foreach ($image as $key => $value) {
+            $img[$key] = $value;
+        }
+       return $this->render('photo',[
+            'img'=>$img,
+            ]);
+    }
+
+     public function actionPublicize()
+    {
+        return $this->render('publicize');
+    }
+
+     public function actionVideos()
+    {
+        return $this->render('videos');
+    }
+     public function actionEmagazine()
+    {
+        return $this->render('emagazine');
     }
 
     /**
