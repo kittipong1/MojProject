@@ -1,3 +1,11 @@
+<?php 
+use yii\helpers\BaseUrl;
+use yii\helpers\Url;
+use yii\helpers\Html;
+Yii::setAlias('@kmpath', '@web');
+ ?>
+
+
 <!doctype html>
 <!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><html lang="en" class="no-js"> <![endif]-->
@@ -24,7 +32,7 @@
           </div>
           <div class="col-md-6">
             <ul class="breadcrumbs">
-              <li><a href="index.php">หน้าหลัก</a></li>
+              <li><?= Html::a('หน้าหลัก',Url::to(['site/index'])); ?></li>
               <li>ข่าวประชาสัมพันธ์</li>
             </ul>
           </div>
@@ -45,22 +53,67 @@
             <div class="latest-posts-classic">
 
               <?php  
-                for ($x = 0; $x <= 9; $x++) {
+              foreach ($news as $key => $value) {
+               $date = explode('-', $news[$key]->create_date);
+                            $str_rep = str_replace(' ', ':',$date);
+                            $explod2 = explode(':', $str_rep[2]);
+                            $day = $explod2[0];
+                            $year = $date[0];
+                            $month = $date[1];
+                            switch ($month) {
+                              case '01':
+                                $mo = 'ม.ก.';
+                                break;
+                              case '02':
+                                $mo = 'ก.พ.';
+                                break;
+                              case '03':
+                                $mo = 'มี.ค.';
+                                break;
+                              case '04':
+                                $mo = 'เม.ษ.';
+                                break;
+                              case '05':
+                                $mo = 'พ.ค.';
+                                break;
+                              case '06':
+                                $mo = 'มิ.ย.';
+                                break;
+                              case '07':
+                                $mo = 'ก.ค.';
+                                break;
+                              case '08':
+                                $mo = 'ส.ค.';
+                                break;
+                              case '09':
+                                $mo = 'ก.ย.';
+                                break;
+                              case '10':
+                                $mo = 'ต.ค.';
+                                break;
+                              case '11':
+                                $mo = 'พ.ย.';
+                                break;
+                              case '12':
+                                $mo = 'ธ.ค.';
+                                break;
+                            }
+                            
                   echo '<div class="post-row">
                   <div class="left-meta-post">
                     <div class="post-type">
-                      <img src="images/img-news.png" alt="">
+                      <img alt="" src="'.Yii::getAlias('@kmpath').'/uploads/news/'.$news[$key]->news_type_id.'/'.$news[$key]->news_image.'" />
                     </div>
-                    <div class="post-date"><span class="day">28</span><span class="month">ส.ค. 2560</span></div>
+                    <div class="post-date"><span class="day">'.$day.'</span><span class="month">'.$mo.' '.$year.'</span></div>
                   </div>
-                  <h3 class="post-title"><a href="detail_news.php">ชื่อข่าวประชาสัมพันธ์</a></h3>
+                  <h3 class="post-title">'.Html::a($news[$key]->news_name,Url::to(['site/detail_news/?id='.$news[$key]->news_id])).'</a></h3>
                   <div class="post-content">
-                    <p>เปียโนน็อคฮาร์ดอึ๋ม ดีมานด์เซ็นเตอร์ วิดีโอโมเดลพาวเวอร์แม่ค้า ปักขคณนาสไตล์ น้องใหม่ ซัพพลายเออร์ แฮมเบอร์เกอร์อาว์ แพนงเชิญแอ็กชั่น ธรรมาภิบาล อุเทนบาบูนอีสต์ฟีเวอร์อาข่า ริกเตอร์ซิงโมเดล รูบิกแทกติคเดี้ยง เซอร์ไพรส์ต้าอ่วย แตงกวา โพลารอยด์เซอร์ไพรส์จีดีพี จังโก้สมิติเวชสแควร์เจ็ต
-                    <a class="read-more" href="#">อ่านต่อ...</a></p>
+                    <p>'.$news[$key]->news_explain.'</p>
+                    '.Html::a('อ่านต่อ <i class="fa fa-angle-right"></i>',Url::to(['site/detail_news/?id='.$news[$key]->news_id]),$options = ['class'=>'main-button']).'
                   </div>
                   <div class="post-footer">
-                    ชื่อหน่วยงาน : หน่วยงาน...
-                    <span class="pull-right"><i class="fa fa-eye"></i> จำนวนผู้เข้าชม : 123 ครั้ง</span>
+                    ชื่อหน่วยงาน : '.$news[$key]->news_type_id.'
+                    <span class="pull-right"><i class="fa fa-eye"></i> จำนวนผู้เข้าชม : '.$news[$key]->news_view.'</span>
                   </div>
                 </div>';
                 }
@@ -71,13 +124,16 @@
               <div class="hr1" style="margin-bottom:30px;"></div>
 
               <!-- Start Pagination -->
-              <div id="pagination">
-                <span class="all-pages">หน้าที่ 1 จาก 3</span>
-                <span class="current page-num">1</span>
-                <a class="page-num" href="#">2</a>
-                <a class="page-num" href="#">3</a>
-                <a class="next-page" href="#">ถัดไป</a>
-              </div>
+             <div id="pagination">
+            <?php 
+            $pagemax = ceil($countnews/10);
+            ?>
+              <span class="all-pages">Page <?=$page?> of <?=$pagemax;?>  </span>
+              <span class="current page-num"><?=$page?></span>
+              <?php for ($i=1; $i < $pagemax+1 ; $i++) { 
+                 echo Html::a($i,Url::to(['site/publicize/?id='.$i])); 
+              } ?>
+            </div>
               <!-- End Pagination -->
 
           </div>
@@ -103,7 +159,7 @@
                   <ul>
                     <li>
                       <div class="widget-thumb">
-                        <a href="#"><img src="images/img-news.png" alt="" /></a>
+                        <a href="#"><img src="<?=Yii::getAlias('@kmpath')?>/images/img-news.png" alt="" /></a>
                       </div>
                       <div class="widget-content">
                         <h5><a href="#">ชื่อข่าว...</a></h5>
@@ -114,7 +170,7 @@
                     </li>
                     <li>
                       <div class="widget-thumb">
-                        <a href="#"><img src="images/img-news.png" alt="" /></a>
+                         <a href="#"><img src="<?=Yii::getAlias('@kmpath')?>/images/img-news.png" alt="" /></a>
                       </div>
                       <div class="widget-content">
                         <h5><a href="#">ชื่อข่าว...</a></h5>
@@ -125,7 +181,7 @@
                     </li>
                     <li>
                       <div class="widget-thumb">
-                        <a href="#"><img src="images/img-news.png" alt="" /></a>
+                         <a href="#"><img src="<?=Yii::getAlias('@kmpath')?>/images/img-news.png" alt="" /></a>
                       </div>
                       <div class="widget-content">
                         <h5><a href="#">ชื่อข่าว...</a></h5>
@@ -136,7 +192,7 @@
                     </li>
                     <li>
                       <div class="widget-thumb">
-                        <a href="#"><img src="images/img-news.png" alt="" /></a>
+                         <a href="#"><img src="<?=Yii::getAlias('@kmpath')?>/images/img-news.png" alt="" /></a>
                       </div>
                       <div class="widget-content">
                         <h5><a href="#">ชื่อข่าว...</a></h5>
@@ -147,7 +203,7 @@
                     </li>
                     <li>
                       <div class="widget-thumb">
-                        <a href="#"><img src="images/img-news.png" alt="" /></a>
+                         <a href="#"><img src="<?=Yii::getAlias('@kmpath')?>/images/img-news.png" alt="" /></a>
                       </div>
                       <div class="widget-content">
                         <h5><a href="#">ชื่อข่าว...</a></h5>

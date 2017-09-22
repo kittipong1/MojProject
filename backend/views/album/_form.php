@@ -15,7 +15,8 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'album_name')->textInput() ?>
 
     <?= $form->field($model, 'album_agencies')->textInput() ?>
-
+    <?= $form->field($model, 'album_imagepath')->fileInput() ?>
+    <?= $form->field($model, 'album_content')->textarea() ?>
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>

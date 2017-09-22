@@ -1,9 +1,15 @@
+<?php 
+use yii\helpers\BaseUrl;
+use yii\helpers\Url;
+use yii\helpers\Html;
+Yii::setAlias('@kmpath', '@web');
+ ?>
+
 <!doctype html>
 <!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><html lang="en" class="no-js"> <![endif]-->
 <html lang="en">
 
-<?php include('include/head.php'); ?>
 
 <body>
 
@@ -11,7 +17,7 @@
   <div id="container">
 
     <!-- Start Header Section -->
-    <?php include('include/header.php'); ?>
+
     <!-- End Header Section -->
 
 
@@ -46,38 +52,47 @@
 
 
             <!-- Start Post -->
+
             <?php  
-                
-                  echo '<div class="blog-post image-post">
+             echo '<div class="blog-post image-post">
               <!-- Start Single Post (Gallery Slider) -->
               <div class="post-head">
-                <div class="touch-slider post-slider">
+                <div class="touch-slider post-slider">';
+                
+                 
+                
+                echo'
                   <div class="item">
-                    <a class="lightbox" title="รายละเอียดรูปภาพ..." href="images/img-gallery-1.png" data-lightbox-gallery="gallery1">
+                  
+                    <a class="lightbox" title="'.$news->news_name.'" href="'.Yii::getAlias('@kmpath').'/uploads/news/'.$news->news_type_id.'/'.$news->news_image.'" data-lightbox-gallery="gallery1">
                       <div class="thumb-overlay"><i class="fa fa-arrows-alt"></i></div>
-                      <img alt="" src="images/img-gallery-1.png">
+                      <img alt="" src="'.Yii::getAlias('@kmpath').'/uploads/news/'.$news->news_type_id.'/'.$news->news_image.'" style ="width:848px;height:200px;">
                     </a>
                   </div>
-                </div>
-              </div>
+                  
+              
 
+              ';
+              
+                
+                  
+              echo '</div>
+              </div>
               <!-- End Single Post (Gallery) -->
               <!-- Post Content -->
               <div class="post-content">
                 <div class="post-type"><i class="fa fa-picture-o"></i></div>
-                <h2><a href="#">ชื่อข่าวประชาสัมพันธ์...</a></h2>
-                <p>ชื่อหน่วยงาน...</p>
-                <ul class="post-meta">
-                  <li>โดย <a href="#">ชื่อ-นามสกุล</a></li>
-                  <li>23 สิงหาคม 2560</li>
+                <h2><a href="#">'.$news->news_name.'</a></h2>
+                <p>'.$news->news_explain.'</p>
+                <ul class="post-meta"><p>
+                '.$news->news_description.'</p>
+                  <li>'.$news->create_date.'</li>
                 </ul>
                 <p>
-                  แจ๊กพอตฟลอร์เอ๋อ วัจนะ สคริปต์ คีตราชันเทรลเล่อร์สังโฆ คาแรคเตอร์พันธกิจแครอทเฮอร์ริเคน พอเพียงรูบิค ฟอยล์เทอร์โบสไตรค์เฟรชธรรมาภิบาล เนิร์สเซอรี่อุปทานสเปควิก ศิลปากรคลาสสิกพุดดิ้งเพรียวบาง บ๊อบเป่ายิ้งฉุบ แพกเกจแซมบ้า บูมกรอบรูปชาร์จ โต๊ะจีนโบรชัวร์คอนโด ปอดแหกมาร์เก็ตไอติมโมเต็ล ฟลอร์ แพ็ค จีดีพี ปิกอัพลอจิสติกส์วอลซ์สไปเดอร์มายาคติ โรแมนติคเพรียวบาง เบอร์เกอร์ อิกัวนาเบญจมบพิตร พุดดิ้งเคอร์ฟิวช็อปเปอร์ ตุ๋ยดยุคผลักดันยูโร มอคค่าเจี๊ยวซาร์ดีนซิ้ม จิ๊กโจ๋ศากยบุตรศิลปวัฒนธรรม เกย์ อีแต๋นพาร์ทเนอร์ร็อคมาราธอนกรีน ซาฟารี เทคคอนแท็คโต๊ะจีน สตรอเบอร์รีอิกัวนาหยวน เห่ยรูบิคโอเปอเรเตอร์ลีเมอร์ เจ็ตแพกเกจฮองเฮา เช็งเม้งไอติมคอปเตอร์โปรโมท ป่าไม้พาร์ทเนอร์กาญจน์กีวีนิรันดร์ ตะหงิด
+                  
                 </p>
-                <a class="main-button" href="#">อ่านต่อ <i class="fa fa-angle-right"></i></a>
               </div>
             </div>';
-              
               ?> 
 
             
@@ -118,7 +133,7 @@
                       for ($x = 0; $x <= 4; $x++) {
                         echo '<li>
                       <div class="widget-thumb">
-                        <a href="#"><img src="images/img-news.png" alt="" /></a>
+                        <a href="#"><img src="'.Yii::getAlias('@kmpath').'/images/img-news.png" alt="" /></a>
                       </div>
                       <div class="widget-content">
                         <h5><a href="#">ชื่อข่าว...</a></h5>
@@ -177,14 +192,8 @@
     <!-- End Content -->
 
 
-    <!-- Start Footer Section -->
-    <?php include('include/footer.php'); ?>
-    <!-- End Footer Section -->
 
   </div>
-  <!-- End Container -->
-
-  <?php include('include/bottom.php'); ?>
 
 </body>
 

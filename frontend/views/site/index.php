@@ -1,7 +1,8 @@
 <?php 
 use yii\helpers\Html;
 Yii::setAlias('@kmpath', '@web');
-
+use yii\helpers\BaseUrl;
+use yii\helpers\Url;
 
 
 ?>
@@ -96,7 +97,7 @@ Yii::setAlias('@kmpath', '@web');
                   <!-- Nav Tabs -->
                   <ul class="nav nav-tabs">
                     <li class="active"><a href="#" data-toggle="tab"><i class="fa fa-newspaper-o"></i>ข่าวประชาสัมพันธ์</a></li>
-                    <span class="pull-right" style="padding: 8px 0px;"><a href="publicize.php" class="btn btn-warning btn-sm" title="ดูทั้งหมด" title="ดูทั้งหมด"><i class="fa fa-plus"></i></a></span>
+                    <span class="pull-right" style="padding: 8px 0px;"><?= Html::a('ดูทั้งหมด <i class="fa fa-plus"></i>',Url::to(['site/publicize']),$options = ['class'=>'btn btn-warning btn-sm']); ?></span>
                   </ul>
 
                   <!-- Tab panels -->
@@ -155,14 +156,14 @@ Yii::setAlias('@kmpath', '@web');
                             echo '<div class="post-row">
                             <div class="left-meta-post">
                               <div class="post-type">
-                                <img src="'.Yii::getAlias('@kmpath').'/images/img-news.png" alt="">
+                                <img src="'.Yii::getAlias('@kmpath').'/uploads/news/'.$news[$x]->news_type_id.'/'.$news[$x]->news_image.'" alt="">
                               </div>
                               <div class="post-date"><span class="day">'.$day.'</span><span class="month">'.$mo.' '.$year.'</span></div>
                             </div>
-                            <h3 class="post-title"><a href="#">'.$news[$x]->news_name.'</a></h3>
+                            <h3 class="post-title">'.Html::a($news[$x]->news_name,Url::to(['site/detail_news/?id='.$news[$x]->news_id])).'</h3>
                             <div class="post-content">
                               <p class="block-with-text">'.$news[$x]->news_explain.'<br><br>
-                              <a class="read-more" href="#">อ่านต่อ...</a></p>
+                              '.Html::a('อ่านต่อ..>',Url::to(['site/detail_news/?id='.$news[$x]->news_id])).'</p>
                             </div>
                             <div class="post-footer">
                               ชื่อหน่วยงาน : '.$news[$x]->news_id.'
@@ -224,14 +225,14 @@ Yii::setAlias('@kmpath', '@web');
                             echo '<div class="post-row">
                             <div class="left-meta-post">
                               <div class="post-type">
-                                <img src="'.Yii::getAlias('@kmpath').'/images/img-news.png" alt="">
+                                <img src="'.Yii::getAlias('@kmpath').'/uploads/news/'.$news[$x]->news_type_id.'/'.$news[$x]->news_image.'"  alt="">
                               </div>
                               <div class="post-date"><span class="day">'.$day.'</span><span class="month">'.$mo.' '.$year.'</span></div>
                             </div>
-                            <h3 class="post-title"><a href="#">'.$news[$x]->news_name.'</a></h3>
+                            <h3 class="post-title">'.Html::a($news[$x]->news_name,Url::to(['site/detail_news/?id='.$news[$x]->news_id])).'</h3>
                             <div class="post-content">
                               <p class="block-with-text">'.$news[$x]->news_explain.'<br><br>
-                              <a class="read-more" href="#">อ่านต่อ...</a></p>
+                              '.Html::a('อ่านต่อ..>',Url::to(['site/detail_news/?id='.$news[$x]->news_id])).'</p>
                             </div>
                             <div class="post-footer">
                               ชื่อหน่วยงาน : '.$news[$x]->news_id.'
@@ -512,7 +513,7 @@ Yii::setAlias('@kmpath', '@web');
               <ul class="nav nav-tabs">
                 <li class="active"><a href="#" data-toggle="tab"><i class="fa fa-video-camera"></i>คลังวิดีโอ</a></li>
                 <span class="pull-right" style="padding: 8px 0px;">
-                <?= Html::a('ดูทั้งหมด <i class="fa fa-plus"></i>','gallery',$options = ['class'=>'btn btn-warning btn-sm']); ?>
+                <?= Html::a('ดูทั้งหมด <i class="fa fa-plus"></i>',Url::to(['site/gallery']).'/?video=1',$options = ['class'=>'btn btn-warning btn-sm']); ?>
                 </span>
               </ul>
 
@@ -532,7 +533,7 @@ Yii::setAlias('@kmpath', '@web');
               <ul class="nav nav-tabs">
                 <li class="active"><a href="#" data-toggle="tab"><i class="fa fa-picture-o"></i>คลังรูปภาพ</a></li>
                 <span class="pull-right" style="padding: 8px 0px;">
-                  <?= Html::a('ดูทั้งหมด <i class="fa fa-plus"></i>','gallery',$options = ['class'=>'btn btn-warning btn-sm']); ?>
+                  <?= Html::a('ดูทั้งหมด <i class="fa fa-plus"></i>',Url::to(['site/gallery']).'/?photo=1',$options = ['class'=>'btn btn-warning btn-sm']); ?>
                 </span>
               </ul>
 
@@ -542,14 +543,27 @@ Yii::setAlias('@kmpath', '@web');
                 <div class="tab-pane fade in active">
                   <ul class="flickr-list">
                     <?php  
-                      for ($x = 0; $x <= 8; $x++) {
-                        echo '<li>
+                      foreach ($album as $key => $value) {
+
+                        $str_re = $album[$key]->album_img;
+                        if($str_re == ''){
+                          echo '<li>
                         <a href="'.Yii::getAlias('@kmpath').'/images/img-gallery.png" class="lightbox">
-                          <img alt="" src="'.Yii::getAlias('@kmpath').'/images/img-gallery.png">
+                        <img alt="" src="'.Yii::getAlias('@kmpath').'/images/img-gallery.png">';
+                        }
+                        else {
+                           echo '<li>
+                        <a href="'.Yii::getAlias('@kmpath').'/uploads/images/'.$album[$key]->album_img.'" class="lightbox">
+                        <img alt="" src="'.Yii::getAlias('@kmpath').'/uploads/images/'.$album[$key]->album_img.'">';
+                        
+                        }
+                         echo '
+                          
                         </a>
                         <p>ชื่ออัลบั้ม...</p>
                       </li>';
                       }
+                      
                     ?> 
                   </ul>
                 </div>

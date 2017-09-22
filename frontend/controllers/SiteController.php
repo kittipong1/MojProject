@@ -16,6 +16,9 @@ use yii\helpers\ArrayHelper;
 use app\models\News;
 use app\models\album;
 use app\models\image;
+use app\models\Vdo;
+use app\models\NewsType;
+use yii\data\ActiveDataProvider;
 /**
  * Site controller
  */
@@ -80,8 +83,14 @@ class SiteController extends Controller
         foreach ($newsall as $key => $value) {
             $news[$key] = $value;
         }
+        $albumall = album::find()->all();
+        $album = array();
+        foreach ($albumall as $key => $value) {
+            $album[$key] = $value;
+        }
         return $this->render('index',[
                'news'=>$news,
+               'album'=>$album,
             ]);
             
     }
@@ -94,15 +103,37 @@ class SiteController extends Controller
     {
         return $this->render('knowledge');
     }
-     public function actionGallery()
-    {
-        $albumall = album::find()->all();
+     public function actionGallery($id=null,$photo=null,$video=null)
+    {   
+        //IMAGE DATA/////////////////////////////////
+        if(empty($id)){$id = 1;}
+        if($photo==1){$photos = 'active';}else {$photos = '';}
+        if($video==1){$videos = 'active';}else {$videos = '';}
+        $page =$id ;
+        $limit = ($page-1)*6 ;
+        $albumall = album::find()->limit(6)->offset($limit)->all();
         $album = array();
+        $countimg = album::find()->all();
+        $a = count($countimg);
         foreach ($albumall as $key => $value) {
             $album[$key] = $value;
         }
+        //VDO DATA/////////////////////////////////
+        $vdoall = VDO::find()->limit(6)->offset($limit)->all();
+        $vdo = array();
+        $countvdo = VDO::find()->all();
+        $b = count($countvdo);
+        foreach ($vdoall as $key => $value) {
+            $vdo[$key] = $value;
+        }
         return $this->render('gallery',[
                 'album'=>$album,
+                'vdo'=>$vdo,
+                'page'=>$page,
+                'countimg'=>$a,
+                'countvdo'=>$b,
+                'photos'=>$photos,
+                'videos'=>$videos,
             ]);
     }
      public function actionNews()
@@ -111,21 +142,51 @@ class SiteController extends Controller
     }
      public function actionPhoto($id)
     {
+        $album = album::find()->where(['album_id'=>$id])->one();
+        $album->album_view ++;
+        $album->save();
         $image = image::find()->where(['ref_id'=>$id])->all();
         $img = array();
         foreach ($image as $key => $value) {
             $img[$key] = $value;
+
         }
        return $this->render('photo',[
             'img'=>$img,
+            'album'=>$album,
             ]);
     }
 
-     public function actionPublicize()
+     public function actionPublicize($id=null)
     {
-        return $this->render('publicize');
-    }
+        if(empty($id)){
+            $id=1;
+        }
+        $page =$id ;
+        $limit = ($page-1)*6 ;
+        $newsall = News::find()->limit(10)->offset($limit)->all();
+        $news = array();
+        $countnews = VDO::find()->all();
+        $a = count($countnews);
+        foreach ($newsall as $key => $value) {
+            $news[$key] = $value;
+        }
 
+        return $this->render('publicize',[
+            'news'=>$news,
+            'page'=>$page,
+            'countnews'=>$a,
+            ]);
+    }
+    public function actionDetail_news($id)
+    {
+        $news = News::find()->where(['news_id'=>$id])->one();
+
+        return $this->render('detail_news',[
+            'news'=>$news,
+
+            ]);
+    }
      public function actionVideos()
     {
         return $this->render('videos');

@@ -22,6 +22,7 @@ class Album extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    public $album_imagepath ;
     public static function tableName()
     {
         return 'album';
@@ -33,9 +34,10 @@ class Album extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'album_name', 'create_date', 'modified_date', 'album_agencies'], 'required'],
+            [['user_id', 'album_name', 'create_date', 'modified_date', 'album_agencies','album_content'], 'required'],
             [['user_id', 'album_view'], 'integer'],
-            [['album_name', 'album_agencies'], 'string'],
+            [['album_name', 'album_agencies','album_img'], 'string'],
+            [['album_image'],'file','skipOnEmpty'=>true,'on' => 'update','extensions'=>'jpg,png,gif'],
             [['create_date', 'modified_date'], 'safe'],
         ];
     }
@@ -53,6 +55,9 @@ class Album extends \yii\db\ActiveRecord
             'modified_date' => 'Modified Date',
             'album_view' => 'Album View',
             'album_agencies' => 'ชื่อหน่วยงาน',
+            'album_content'=> 'อัลบั้มเนื้อหาบทความ',
+            'album_img'=> 'รูปภาพอัลบั้ม',
+            'album_imagepath'=>'รูปภาพอัลบั้ม',
         ];
     }
 

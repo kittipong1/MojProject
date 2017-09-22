@@ -1,4 +1,6 @@
 <?php 
+use yii\helpers\BaseUrl;
+use yii\helpers\Url;
 use yii\helpers\Html;
 Yii::setAlias('@kmpath', '@web');
 ?><!doctype html>
@@ -7,7 +9,9 @@ Yii::setAlias('@kmpath', '@web');
 <html lang="en">
 
 
+<?php 
 
+ ?>
 <body>
   <!-- Container -->
   <div id="container">
@@ -42,30 +46,32 @@ Yii::setAlias('@kmpath', '@web');
           <div>
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist">
-              <li role="presentation" class="active"><a href="#video" aria-controls="home" role="tab" data-toggle="tab">คลังวิดีโอ</a></li>
-              <li role="presentation"><a href="#photo" aria-controls="profile" role="tab" data-toggle="tab">คลังรูปภาพ</a></li>
+              <li role="presentation" class="<?=$videos?>"><a href="#video" aria-controls="home" role="tab" data-toggle="tab">คลังวิดีโอ</a></li>
+              <li role="presentation" class="<?=$photos?>"><a href="#photo" aria-controls="profile" role="tab" data-toggle="tab">คลังรูปภาพ</a></li>
             </ul>
             <!-- Tab panes -->
             <div class="tab-content">
               <!--Start Video-->
-              <div role="tabpanel" class="tab-pane active" id="video">
+              <div role="tabpanel" class="tab-pane <?=$videos?>" id="video">
                  <!-- Tab panels -->
                       <div class="latest-posts-classic">
                         <!-- Start Team Members -->
                         <div class="row">
                           <!-- Start Memebr 1 -->
                             <?php  
-                              for ($x = 0; $x <= 5; $x++) {
+                            foreach ($vdo as $key => $value) {
+                              # code...
+                          
                                 echo ' <div class="col-md-4 col-sm-6 col-xs-12">
                                 <a href="#">
                                 <div class="team-member">
                                   <!-- Memebr Photo, Name & Position -->
                                   <div class="member-photo">
-                                    <video src=" '.Yii::getAlias('@kmpath').'/videos/v1.mp4" width="100%" poster="images/img-vdo.png" controls></video>
+                                    <video src=" '.Yii::getAlias('@kmpath').'/uploads/media/'.$vdo[$key]->path.'" width="100%" poster="images/img-vdo.png" controls style="height: 185px;" ></video>
                                   </div>
                                   <!-- Memebr Words -->
                                   <div class="member-info">
-                                      <h5>ชื่อวิดีโอ...</h5>
+                                      <h5>'.$vdo[$key]->vdo_name.'</h5>
                                       <p>ชื่อหน่วยงาน..</p>
                                       <div class="member-footer">
                                       <p><small><i class="fa fa-calendar"></i> 24/08/2560 <span class="pull-right"><i class="fa fa-eye"></i> 100 ครั้ง</span></small>
@@ -79,21 +85,32 @@ Yii::setAlias('@kmpath', '@web');
                             <!-- End Memebr 1 -->
                         </div>
                         <!-- End Team Members -->
+                        <div id="pagination">
+            <?php 
+            $pagemax = ceil($countvdo/6);
+            ?>
+              <span class="all-pages">Page <?=$page?> of <?=$pagemax;?>  </span>
+              <span class="current page-num"><?=$page?></span>
+              <?php for ($i=1; $i < $pagemax+1 ; $i++) { 
+                 echo Html::a($i,Url::to(['site/gallery/?id='.$i.'&video=1'])); 
+              } ?>
+            </div>
                         </div>
               <!-- End Tab Panels -->
               </div>
               <!--End Video-->
               <!--Start Photo -->
-              <div role="tabpanel" class="tab-pane" id="photo">
+              <div role="tabpanel" class="tab-pane <?=$photos?>" id="photo">
                  <!-- Tab panels -->
               
-                      <div class="latest-posts-classic">
+                      <div class="latest-posts-classic ">
 
                         <!-- Start Team Members -->
                         <div class="row">
                           <!-- Start Memebr 1 -->
                             <?php  
-                              for ($x = 0; $x <= 1; $x++) {
+                              
+                                foreach ($album as $key => $value) {
                                 echo ' <div class="col-md-4 col-sm-6 col-xs-12">
                                 <a href="#">
                                 <div class="team-member">
@@ -103,10 +120,10 @@ Yii::setAlias('@kmpath', '@web');
                                   </div>
                                   <!-- Memebr Words -->
                                   <div class="member-info">
-                                    <p><b>'.Html::a($album[$x]->album_name,'photo/'.$album[$x]->album_id).'</b></p>
+                                    <p><b>'.Html::a($album[$key]->album_name,Url::to(['site/photo']).'/'.$album[$key]->album_id).'</b></p>
                                     <p>ชื่อหน่วยงาน....</p>
                                     <div class="member-footer">
-                                      <p><small><i class="fa fa-calendar"></i> '.$album[$x]->create_date.'<span class="pull-right"><i class="fa fa-eye"></i> 100 ครั้ง</span></small>
+                                      <p><small><i class="fa fa-calendar"></i> '.$album[$key]->create_date.'<span class="pull-right"><i class="fa fa-eye"></i> 100 ครั้ง</span></small>
                                       </div>
                                   </div>
                                 </div>
@@ -119,19 +136,23 @@ Yii::setAlias('@kmpath', '@web');
                         <!-- End Team Members -->  
                   </div>
               <!-- End Tab Panels -->
+               <div id="pagination">
+            <?php 
+            $pagemax = ceil($countimg/6);
+            ?>
+              <span class="all-pages">Page <?=$page?> of <?=$pagemax;?>  </span>
+              <span class="current page-num"><?=$page?></span>
+              <?php for ($i=1; $i < $pagemax+1 ; $i++) { 
+                 echo Html::a($i,Url::to(['site/gallery/?id='.$i.'&photo=1'])); 
+              } ?>
+            </div>
               </div>
               <!--End Start Photo -->
             </div>
           </div>
 
             <!-- Start Pagination -->
-            <div id="pagination">
-              <span class="all-pages">Page 1 of 3</span>
-              <span class="current page-num">1</span>
-              <a class="page-num" href="#">2</a>
-              <a class="page-num" href="#">3</a>
-              <a class="next-page" href="#">Next</a>
-            </div>
+           
             <!-- End Pagination -->
           </div>
           <!-- End Page Content-->

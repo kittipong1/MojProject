@@ -8,7 +8,7 @@ use backend\models\albumsearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use yii\web\UploadedFile;
 /**
  * AlbumController implements the CRUD actions for album model.
  */
@@ -70,6 +70,11 @@ class AlbumController extends Controller
             $model->modified_date = date('Y-m-d H:i:s');
             $model->album_view = 0;
             $model->user_id = 1;
+            $file = UploadedFile::getInstance($model,'album_imagepath');
+            if($file->size!=0){
+                $model->album_img = $file->basename.'.'.$file->extension;
+                $file->saveAs('../uploads/images/'.$file->basename.'.'.$file->extension);
+            }
             if($model->save()){
                 $model->save();
             }
@@ -93,6 +98,11 @@ class AlbumController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
             $model->modified_date = date('Y-m-d H:i:s');
+             $file = UploadedFile::getInstance($model,'album_imagepath');
+            if($file->size!=0){
+                $model->album_img = $file->basename.'.'.$file->extension;
+                $file->saveAs('../uploads/images/'.$file->basename.'.'.$file->extension);
+            }
             if($model->save()){
                 $model->save();
             }
