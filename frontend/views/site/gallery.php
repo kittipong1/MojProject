@@ -28,7 +28,7 @@ Yii::setAlias('@kmpath', '@web');
           </div>
           <div class="col-md-6">
             <ul class="breadcrumbs">
-              <li><a href="index.php">หน้าหลัก</a></li>
+              <li><?= Html::a('หน้าหลัก',Url::to(['site/index'])); ?></li>
               <li>กิจกรรม</li>
             </ul>
           </div>

@@ -560,7 +560,7 @@ use yii\helpers\Url;
                          echo '
                           
                         </a>
-                        <p>ชื่ออัลบั้ม...</p>
+                         <p>'.Html::a($album[$key]->album_name,Url::to(['site/photo']).'/'.$album[$key]->album_id).'</p>  
                       </li>';
                       }
                       

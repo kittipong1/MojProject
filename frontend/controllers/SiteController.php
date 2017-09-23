@@ -180,8 +180,10 @@ class SiteController extends Controller
     }
     public function actionDetail_news($id)
     {
-        $news = News::find()->where(['news_id'=>$id])->one();
 
+        $news = News::find()->where(['news_id'=>$id])->one();
+        $news->news_view ++;
+        $news->save();
         return $this->render('detail_news',[
             'news'=>$news,
 
