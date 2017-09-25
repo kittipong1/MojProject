@@ -9,9 +9,7 @@ Yii::setAlias('@kmpath', '@web');
 <html lang="en">
 
 
-<?php 
-
- ?>
+<?= Html::csrfMetaTags() ?>
 <body>
   <!-- Container -->
   <div id="container">
@@ -61,20 +59,20 @@ Yii::setAlias('@kmpath', '@web');
                             <?php  
                             foreach ($vdo as $key => $value) {
                               # code...
-                          
+                            $loopvdo = $key ;
                                 echo ' <div class="col-md-4 col-sm-6 col-xs-12">
                                 <a href="#">
                                 <div class="team-member">
                                   <!-- Memebr Photo, Name & Position -->
                                   <div class="member-photo">
-                                    <video src=" '.Yii::getAlias('@kmpath').'/uploads/media/'.$vdo[$key]->path.'" width="100%" poster="images/img-vdo.png" controls style="height: 185px;" ></video>
+                                    <video src=" '.Yii::getAlias('@kmpath').'/uploads/media/'.$vdo[$key]->path.'" width="100%" poster="'.Yii::getAlias('@kmpath').'/images/img-vdo.png" controls style="height: 185px; " onplaying="vdoviews('.$vdo[$key]->vdo_id.')" ></video>
                                   </div>
                                   <!-- Memebr Words -->
                                   <div class="member-info">
                                       <h5>'.$vdo[$key]->vdo_name.'</h5>
                                       <p>ชื่อหน่วยงาน..</p>
                                       <div class="member-footer">
-                                      <p><small><i class="fa fa-calendar"></i> 24/08/2560 <span class="pull-right"><i class="fa fa-eye"></i> 100 ครั้ง</span></small>
+                                      <p><small><i class="fa fa-calendar"></i> 24/08/2560 <span class="pull-right"><i class="fa fa-eye"></i> '.$vdo[$key]->vdo_view.'</span></small>
                                       </div>
                                   </div>
                                 </div>
@@ -120,10 +118,10 @@ Yii::setAlias('@kmpath', '@web');
                                   </div>
                                   <!-- Memebr Words -->
                                   <div class="member-info">
-                                    <p><b>'.Html::a($album[$key]->album_name,Url::to(['site/photo']).'/'.$album[$key]->album_id).'</b></p>
-                                    <p>ชื่อหน่วยงาน....</p>
+                                    <p><b>'.Html::a($album[$key]->album_name,Url::to(['site/photo']).'/?id='.$album[$key]->album_id).'</b></p>
+                                    <p>'.$album[$key]->album_agencies.'</p>
                                     <div class="member-footer">
-                                      <p><small><i class="fa fa-calendar"></i> '.$album[$key]->create_date.'<span class="pull-right"><i class="fa fa-eye"></i> 100 ครั้ง</span></small>
+                                      <p><small><i class="fa fa-calendar"></i> '.$album[$key]->create_date.'<span class="pull-right"><i class="fa fa-eye"></i> '.$album[$key]->album_view.'</span></small>
                                       </div>
                                   </div>
                                 </div>
@@ -239,7 +237,21 @@ Yii::setAlias('@kmpath', '@web');
 
   </div>
   <!-- End Container -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+  
+  function vdoviews(id){
+   $(document).ready(function(){
+  
+        $.post("<?=Yii::getAlias('@kmpath').'/index.php/site/viewvdoupdate'?>",
+        {
 
+          Data: id
+        });
+});
+  }
+
+</script>
 
 </body>
 

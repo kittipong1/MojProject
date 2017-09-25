@@ -27,6 +27,10 @@ class SiteController extends Controller
     /**
      * @inheritdoc
      */
+     public function beforeAction($action) { 
+     $this->enableCsrfValidation = false; 
+    return parent::beforeAction($action);
+    }
     public function behaviors()
     {
         return [
@@ -105,6 +109,11 @@ class SiteController extends Controller
     }
      public function actionGallery($id=null,$photo=null,$video=null)
     {   
+        if(isset($_POST['views1'])){
+            exit();
+        }
+
+
         //IMAGE DATA/////////////////////////////////
         if(empty($id)){$id = 1;}
         if($photo==1){$photos = 'active';}else {$photos = '';}
@@ -140,11 +149,23 @@ class SiteController extends Controller
     {
         return $this->render('news');
     }
+
+    public function actionViewvdoupdate()
+    {  
+            $a = $_POST['Data'];
+             $Vdo = Vdo::find()->where(['vdo_id'=>$a])->one();
+             $Vdo->vdo_view ++;
+             $Vdo->save();exit();
+         
+        return $this->render('some');
+    }
      public function actionPhoto($id)
     {
+
         $album = album::find()->where(['album_id'=>$id])->one();
         $album->album_view ++;
         $album->save();
+
         $image = image::find()->where(['ref_id'=>$id])->all();
         $img = array();
         foreach ($image as $key => $value) {
