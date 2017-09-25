@@ -84,6 +84,28 @@
             ],
             ['label' => 'ปรเภทคลังอัลบัมรูปภาพ', 'icon' => 'file-image-o', 'url' => ['/album']],
 
+            [
+                        'label' => 'การจัดการเกี่ยวกับเรา',
+                        'icon' => 'file-text-o',
+                        'url' => '#',
+                        'items' => [
+                            ['label' => 'เพิ่มเกี่ยวกับเรา', 'icon' => 'plus', 'url' => ['/about/create'],],
+                            ['label' => 'รายการเกี่ยวกับเรา ', 'icon' => 'book', 'url' => ['/about/index'],],
+],
+            
+            ],
+
+            [
+                        'label' => 'การจัดการเกี่ยวกับ banner',
+                        'icon' => 'photo',
+                        'url' => '#',
+                        'items' => [
+                            ['label' => 'เพิ่ม banner', 'icon' => 'plus', 'url' => ['/banner/create'],],
+                            ['label' => 'รายการ banner ', 'icon' => 'book', 'url' => ['/banner/index'],],
+],
+            
+            ],
+
             ]
             ]
         ) ?>
