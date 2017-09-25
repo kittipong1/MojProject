@@ -59,7 +59,10 @@ Yii::setAlias('@kmpath', '@web');
                             <?php  
                             foreach ($vdo as $key => $value) {
                               # code...
-                            $loopvdo = $key ;
+                            $loopvdo[$key] = $vdo[$key]->vdo_id ;
+                            
+                            
+                            
                                 echo ' <div class="col-md-4 col-sm-6 col-xs-12">
                                 <a href="#">
                                 <div class="team-member">
@@ -72,13 +75,14 @@ Yii::setAlias('@kmpath', '@web');
                                       <h5>'.$vdo[$key]->vdo_name.'</h5>
                                       <p>ชื่อหน่วยงาน..</p>
                                       <div class="member-footer">
-                                      <p><small><i class="fa fa-calendar"></i> 24/08/2560 <span class="pull-right"><i class="fa fa-eye"></i> '.$vdo[$key]->vdo_view.'</span></small>
+                                      <p><small><i class="fa fa-calendar"></i> 24/08/2560 <span class="pull-right " id="views'.$vdo[$key]->vdo_id.'"><i class="fa fa-eye"></i> '.$vdo[$key]->vdo_view.'</span></small>
                                       </div>
                                   </div>
                                 </div>
                                 </a>
                               </div>';
                               }
+                              $loopvdomax = end($loopvdo) ;
                             ?> 
                             <!-- End Memebr 1 -->
                         </div>
@@ -245,8 +249,12 @@ Yii::setAlias('@kmpath', '@web');
   
         $.post("<?=Yii::getAlias('@kmpath').'/index.php/site/viewvdoupdate'?>",
         {
-
           Data: id
+        },function(data){
+          <?php for ($i=$loopvdo[0] ; $i < $loopvdomax +1; $i++) :?>
+           document.getElementById("views"+data[3]).innerHTML= '<i class="fa fa-eye"></i> '+data[0]+data[1];
+          <?php endfor ?>
+          
         });
 });
   }

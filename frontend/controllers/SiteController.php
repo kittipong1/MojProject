@@ -171,7 +171,12 @@ class SiteController extends Controller
             $a = $_POST['Data'];
              $Vdo = Vdo::find()->where(['vdo_id'=>$a])->one();
              $Vdo->vdo_view ++;
-             $Vdo->save();exit();
+             $Vdo->save();
+             
+             echo $Vdo->vdo_view;
+             echo $Vdo->vdo_id;
+            
+             exit();
          
         return $this->render('some');
     }

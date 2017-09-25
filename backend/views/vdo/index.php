@@ -7,7 +7,7 @@ use app\models\storevdo;
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\vdosearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-
+Yii::setAlias('@kmpath', '@web');
 $this->title = 'Vdos';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -41,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'format'=>'raw',
             'value'=> function($model){
                 if($model->path !=''){
-                    return '<video src="../uploads/media/'.$model->path.'" style="width: 320px;height: 200px;" controls></video>';
+                    return '<video src="'.Yii::getAlias('@kmpath').'../../uploads/media/'.$model->path.'" style="width: 320px;height: 200px;" controls></video>';
                 }
             }
 
