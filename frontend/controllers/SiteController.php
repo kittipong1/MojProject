@@ -92,16 +92,29 @@ class SiteController extends Controller
         foreach ($albumall as $key => $value) {
             $album[$key] = $value;
         }
+        $banner = Banner::find()->where('ban_id')->all();
+        $banners = array();
+        foreach ($banner as $key => $value) {
+            $banners[$key] = $value;
+        }
         return $this->render('index',[
                'news'=>$news,
                'album'=>$album,
+               'banners'=>$banners,
             ]);
             
     }
 
     public function actionAboutus()
     {
-        return $this->render('aboutus');
+        $aboutall = About::find()->all();
+        $about = array();
+        foreach ($aboutall as $key => $value) {
+            $about[$key] = $value;
+        }
+        return $this->render('aboutus',[
+               'about'=>$about,
+            ]);
     }
      public function actionKnowledge()
     {

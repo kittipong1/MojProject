@@ -48,18 +48,25 @@ use yii\helpers\Url;
       <!-- Wrapper for slides -->
       <div class="carousel-inner" role="listbox">
         <div class="item active">
-          <img src="<?= Yii::getAlias('@kmpath');?>/images/img-news-slider.png" alt="...">
+
+          <img src="<?= Yii::getAlias('@kmpath');?>/uploads/images/<?= $banners[0]->ban_image; ?>" alt="..." style="width: 100%;">
           <div class="carousel-caption">
             ...
           </div>
         </div>
         <div class="item">
-          <img src="<?= Yii::getAlias('@kmpath');?>/images/img-news-slider.png" alt="...">
+          <img src="<?= Yii::getAlias('@kmpath');?>/uploads/images/<?= $banners[1]->ban_image; ?>" alt="..." style="width: 100%;">
           <div class="carousel-caption">
             ...
           </div>
         </div>
+         <div class="item">
+          <img src="<?= Yii::getAlias('@kmpath');?>/uploads/images/<?= $banners[2]->ban_image; ?>" alt="..." style="width: 100%;">
+          <div class="carousel-caption">
+            ...
+          </div>
       </div>
+    </div>
 
       <!-- Controls -->
       <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
