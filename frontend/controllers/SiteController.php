@@ -19,6 +19,9 @@ use app\models\image;
 use app\models\Vdo;
 use app\models\NewsType;
 use yii\data\ActiveDataProvider;
+use app\models\about;
+use app\models\Banner;
+
 /**
  * Site controller
  */
