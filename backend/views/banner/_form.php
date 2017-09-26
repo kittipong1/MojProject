@@ -9,6 +9,10 @@ use yii\web\view;
 /* @var $model backend\models\Banner */
 /* @var $form yii\widgets\ActiveForm */
 $this->registerJs(" 
+    $(function () {
+    CKEDITOR.replace('banner-ban_detail')
+    })
+    
     $('#banner-start_date').datepicker({
       autoclose: true
     });
