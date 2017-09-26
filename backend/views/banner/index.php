@@ -41,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'end_date',
             // 'view',
             // 'ban_detail:ntext',
-
+            
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

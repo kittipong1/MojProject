@@ -35,39 +35,10 @@ class AppAsset extends AssetBundle
         '../backend/web/js/plugins/link/dialogs/anchor.js',
         '../backend/web/js/plugins/about/dialogs/about.js',
         '../backend/web/js/plugins/wsc/dialogs/wsc.js',
+        '../backend/web/js/plugins/pastefromword/filter/default.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
     ];
 }
-=======
-<?php
-
-namespace backend\assets;
-
-use yii\web\AssetBundle;
-
-/**
- * Main backend application asset bundle.
- */
-class AppAsset extends AssetBundle
-{
-    public $basePath = '@webroot';
-    public $baseUrl = '@web';
-    public $css = [
-        '../backend/web/css/site.css',
-        '../backend/web/css/datepicker.css',
-        '../backend/web/css/editor.css',
-    ];
-    public $js = [
-        '../backend/web/js/bootstrap-datepicker.js',
-        '../backend/web/js/ckeditor.js',
-        '../backend/web/js/config.js',
-    ];
-    public $depends = [
-        'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset',
-    ];
-}
->>>>>>> b3880ae07c28636a9eebd2246f86e7e58ccc2a38
