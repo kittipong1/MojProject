@@ -4,10 +4,10 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\web\view;
 
-
 /* @var $this yii\web\View */
 /* @var $model backend\models\Banner */
 /* @var $form yii\widgets\ActiveForm */
+
 $this->registerJs(" 
     $(function () {
     CKEDITOR.replace('banner-ban_detail')
@@ -20,6 +20,32 @@ $this->registerJs("
     $('#banner-end_date').datepicker({
       autoclose: true
     });
+
+    var input1 = 'input[name =\"Banner[ban_link]\"]';
+      setHideInput(3,$(input1).val(),'#banner-ban_link');
+      $(input1).click(function(val){
+        setHideInput(3,$(this).val(),'#banner-ban_link');
+      });
+
+    var input2 = 'input[name=\"Banner[ban_name]\"]';
+      setHideInput(1,$(input2).val(),'#cke_banner-ban_detail');
+      $(input2).click(function(val){
+        setHideInput(1,$(this).val(),'#cke_banner-ban_detail');
+      });
+
+    function setHideInput(set,value,objTarget)
+  {
+    console.log(set+'='+value);
+      if(set==value)
+      {
+        $(objTarget).show(500);
+      }
+      else
+      {
+        $(objTarget).hide(500);
+      }
+  }
+
     ", View::POS_END, 'my-options');
 ?>
 
@@ -33,7 +59,9 @@ $this->registerJs("
 
     <?= $form->field($model, 'ban_name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'ban_link')->textarea(['rows' => 6]) ?>
+   <input name="show" type="radio" value="1" onclick="show_table(this.value);" <?= $form->field($model, 'ban_link')->textarea(['rows' => 6]) ?>
+
+   <input name="show" type="radio" value="2" onclick="show_table(this.value);" <?= $form->field($model, 'ban_detail')->textarea(['rows' => 6]) ?>
 
     <h3>วันที่เริ่มใช้ - สิ้นสุดการใช้งาน</h3>
     <div class="container-fuild">
@@ -59,12 +87,21 @@ $this->registerJs("
     </div>
 </div>
 
-    <?= $form->field($model, 'ban_detail')->textarea(['rows' => 6]) ?>
-
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
 
+    <script language="javascript">
+        function show_table(id) {
+            if(id == 1) { // ถ้าเลือก radio button 1 ให้โชว์ table 1 และ ซ่อน table 2
+            document.getElementById("banner-ban_link").style.display = "";
+            document.getElementById("cke_banner-ban_detail").style.display = "none";
+            } else if(id == 2) { // ถ้าเลือก radio button 2 ให้โชว์ table 2 และ ซ่อน table 1
+            document.getElementById("banner-ban_link").style.display = "none";
+            document.getElementById("cke_banner-ban_detail").style.display = "";
+            }
+        }
+    </script>
 </div>

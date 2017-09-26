@@ -36,7 +36,7 @@ class Banner extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'ban_name', 'ban_link', 'ban_image', 'create_date', 'modified_date', 'start_date', 'end_date', 'view', 'ban_detail'], 'required'],
+            [['user_id', 'ban_name', 'ban_image', 'create_date', 'modified_date', 'start_date', 'end_date', 'view'], 'required'],
             [['user_id', 'view'], 'integer'],
             [['ban_link', 'ban_image', 'ban_detail'], 'string'],
             [['banner_img'],'file', 'skipOnEmpty' => true, 'on' => 'update', 'extensions' => 'jpg,png,gif'],

@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 return Html::img('../../../uploads/images/'.$model->ban_image);
               }
             ],
-
+            
             // 'ban_id',
             // 'user_id',
             'ban_name',
@@ -41,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'end_date',
             // 'view',
             // 'ban_detail:ntext',
-            
+
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
