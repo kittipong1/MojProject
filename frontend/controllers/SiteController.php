@@ -168,14 +168,15 @@ class SiteController extends Controller
 
     public function actionViewvdoupdate()
     {  
+        $attr = array();
             $a = $_POST['Data'];
              $Vdo = Vdo::find()->where(['vdo_id'=>$a])->one();
              $Vdo->vdo_view ++;
              $Vdo->save();
              
-             echo $Vdo->vdo_view;
-             echo $Vdo->vdo_id;
-            
+             $attr['view'] = $Vdo->vdo_view;
+             $attr['id'] = $Vdo->vdo_id;
+             echo json_encode($attr);
              exit();
          
         return $this->render('some');

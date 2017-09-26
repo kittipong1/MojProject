@@ -9,7 +9,7 @@ Yii::setAlias('@kmpath', '@web');
 <html lang="en">
 
 
-<?= Html::csrfMetaTags() ?>
+
 <body>
   <!-- Container -->
   <div id="container">
@@ -83,6 +83,7 @@ Yii::setAlias('@kmpath', '@web');
                               </div>';
                               }
                               $loopvdomax = end($loopvdo) ;
+                    
                             ?> 
                             <!-- End Memebr 1 -->
                         </div>
@@ -245,19 +246,24 @@ Yii::setAlias('@kmpath', '@web');
 <script type="text/javascript">
   
   function vdoviews(id){
+
    $(document).ready(function(){
-  
-        $.post("<?=Yii::getAlias('@kmpath').'/index.php/site/viewvdoupdate'?>",
-        {
-          Data: id
-        },function(data){
-          <?php for ($i=$loopvdo[0] ; $i < $loopvdomax +1; $i++) :?>
-           document.getElementById("views"+data[3]).innerHTML= '<i class="fa fa-eye"></i> '+data[0]+data[1];
-          <?php endfor ?>
-          
-        });
+   $.ajax(
+   {
+      type: "POST",
+      dataType: "json",
+      url: "<?= Yii::getAlias('@kmpath').'/index.php/site/viewvdoupdate'?>",
+      data: { Data: id },
+      success: function(data) 
+      { 
+        var idviews = '#views'+data.id ;
+        var contentdiv = '<i class="fa fa-eye"></i> '+data.view ;
+        $(idviews).html(contentdiv);
+      },
+   } );
+      
 });
-  }
+}
 
 </script>
 
