@@ -99,7 +99,7 @@ $this->registerJs("
       </div>
   </div>
 
-    <div class="form-group" style="margin-left: 15px;">
+    <div class="form-group" style="margin-left: 12px;">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
