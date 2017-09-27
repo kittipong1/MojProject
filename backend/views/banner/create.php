@@ -12,11 +12,10 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="box box-primary box-solid">
 	<div class="box-header">
-
-    <h1  class="box-title"><?= Html::encode($this->title) ?></h1>
+    	<h1 class="box-title"><?= Html::encode($this->title) ?></h1>
 	</div>
 	<div class="box-body">
-    <?= $this->render('_form', [
+    	<?= $this->render('_form', [
         'model' => $model,
     ]) ?>
 	</div>
