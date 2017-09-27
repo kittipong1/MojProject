@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
               'format' => 'html',
               'options'=> ['style'=>'width:10px; hight:10px;'],
               'value' => function($model){
-                return Html::img('../../../uploads/images/'.$model->ban_image['class'=> 'thumbnail','width'=>150]);
+                return Html::img('../../../uploads/images/'.$model->ban_image,['class'=> 'thumbnail','width'=>150]);
               }
             ],
             
