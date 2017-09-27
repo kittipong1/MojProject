@@ -10,13 +10,17 @@ use yii\grid\GridView;
 $this->title = 'Banners';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="banner-index">
+<div class="box box-primary box-solid">
+    <div class="box-header">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1 class="box-title"><?= Html::encode($this->title) ?></h1>
+
+    </div>
+    <div class="box-body">
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Banner', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Create Banner', ['create'], ['class' => 'btn btn-primary']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -46,4 +50,5 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+    </div>
 </div>

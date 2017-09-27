@@ -10,9 +10,11 @@ use yii\grid\GridView;
 $this->title = 'Abouts';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="about-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="box box-success box-solid">
+    <div class="box-header">
+        <h1 class="box-title"><?= Html::encode($this->title) ?></h1>
+    </div>
+    <div class="box-body">
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
@@ -34,4 +36,5 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+    </div>
 </div>
