@@ -75,31 +75,31 @@ $this->registerJs("
 
    <input name="show" type="radio" value="2" onclick="show_table(this.value);" <?= $form->field($model, 'ban_detail')->textarea() ?>
 
-    <h3>วันที่เริ่มใช้ - สิ้นสุดการใช้งาน</h3>
-    <div class="container-fuild">
-    <div class='col-md-6'>
-        <div class="form-group">
-            <div class='input-group date' id='banner-start_date'>
-                <input type='text' class="form-control" name="Banner[start_date]"/>
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-            </div>
-        </div>
-    </div>
-    <div class='col-md-6'>
-        <div class="form-group">
-            <div class='input-group date' id='banner-end_date'>
-                <input type='text' class="form-control" name="Banner[end_date]"/>
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-            </div>
-        </div>
-    </div>
-</div>
+    <h3 style="margin-left: 10px;">วันที่เริ่มใช้ - สิ้นสุดการใช้งาน</h3>
+      <div class="container-fuild">
+      <div class='col-md-6'>
+          <div class="form-group">
+              <div class='input-group date' id='banner-start_date'>
+                  <input type='text' class="form-control" name="Banner[start_date]"/>
+                  <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+              </div>
+          </div>
+      </div>
+      <div class='col-md-6'>
+          <div class="form-group">
+              <div class='input-group date' id='banner-end_date'>
+                  <input type='text' class="form-control" name="Banner[end_date]"/>
+                  <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+              </div>
+          </div>
+      </div>
+  </div>
 
-    <div class="form-group">
+    <div class="form-group" style="margin-left: 15px;">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
