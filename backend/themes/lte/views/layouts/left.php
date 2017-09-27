@@ -23,7 +23,7 @@
                 'options' => ['class' => 'sidebar-menu'],
                 'items' => [
                     ['label' => 'Menu', 'options' => ['class' => 'header']],
-                    ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
+                    // ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
                     ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
                     // [
                     //     'label' => 'Same tools',
@@ -97,7 +97,7 @@
 
             [
                         'label' => 'การจัดการเกี่ยวกับ banner',
-                        'icon' => 'photo',
+                        'icon' => 'minus',
                         'url' => '#',
                         'items' => [
                             ['label' => 'เพิ่ม banner', 'icon' => 'plus', 'url' => ['/banner/create'],],
