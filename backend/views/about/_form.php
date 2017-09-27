@@ -23,7 +23,7 @@ $this->registerJs("
 
     <?= $form->field($model, 'user_id')->textInput() ?> -->
 
-    <?= $form->field($model, 'about_description')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'about_description')->textarea() ?>
 
     <!-- <?= $form->field($model, 'create_date')->textInput() ?>
 
