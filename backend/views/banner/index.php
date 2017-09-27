@@ -25,8 +25,9 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],            [
               'attribute' => 'banner',
               'format' => 'html',
+              'options'=> ['style'=>'width:10px; hight:10px;'],
               'value' => function($model){
-                return Html::img('../../../uploads/images/'.$model->ban_image);
+                return Html::img('../../../uploads/images/'.$model->ban_image['class'=> 'thumbnail','width'=>150]);
               }
             ],
             
