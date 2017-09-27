@@ -74,7 +74,7 @@ class BannerController extends Controller
 
               $file = UploadedFile::getInstance($model, 'banner_img');
               if($file->size!=0){
-                $model->ban_image = $file->name.'.'.$file->extension;
+                $model->ban_image = $file->name;
                 $file->saveAs('../uploads/images/'.$file->name.'.'.$file->extension);
 
             $model->view = 1;
@@ -105,7 +105,7 @@ class BannerController extends Controller
         if ($model->load(Yii::$app->request->post())) {
           $file = UploadedFile::getInstance($model, 'banner_img');
           if(isset($file->size) && $file->size!==0){
-                $model->ban_image = $file->name.'.'.$file->extension;
+                $model->ban_image = $file->name;
                 $file->saveAs('../uploads/images/'.$file->name.'.'.$file->extension);
           }
           $model->save();
