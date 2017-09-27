@@ -51,6 +51,18 @@ $this->registerJs("
 
 <div class="banner-form">
 
+    <script language="javascript">
+        function show_table(id) {
+            if(id == 1) { // ถ้าเลือก radio button 1 ให้โชว์ table 1 และ ซ่อน table 2
+            document.getElementById("banner-ban_link").style.display = "";
+            document.getElementById("cke_banner-ban_detail").style.display = "none";
+            } else if(id == 2) { // ถ้าเลือก radio button 2 ให้โชว์ table 2 และ ซ่อน table 1
+            document.getElementById("banner-ban_link").style.display = "none";
+            document.getElementById("cke_banner-ban_detail").style.display = "";
+            }
+        }
+    </script>
+
     <?php $form = ActiveForm::begin([
     'options' => ['enctype' => 'multipart/form-data']
   ]); ?>
@@ -92,16 +104,4 @@ $this->registerJs("
     </div>
 
     <?php ActiveForm::end(); ?>
-
-    <script language="javascript">
-        function show_table(id) {
-            if(id == 1) { // ถ้าเลือก radio button 1 ให้โชว์ table 1 และ ซ่อน table 2
-            document.getElementById("banner-ban_link").style.display = "";
-            document.getElementById("cke_banner-ban_detail").style.display = "none";
-            } else if(id == 2) { // ถ้าเลือก radio button 2 ให้โชว์ table 2 และ ซ่อน table 1
-            document.getElementById("banner-ban_link").style.display = "none";
-            document.getElementById("cke_banner-ban_detail").style.display = "";
-            }
-        }
-    </script>
 </div>
