@@ -4,9 +4,16 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use app\models\NewsType;
+use yii\web\View;
+
 /* @var $this yii\web\View */
 /* @var $model app\models\news */
 /* @var $form yii\widgets\ActiveForm */
+$this->registerJs(" 
+    $(function () {
+    CKEDITOR.replace('news-news_description')
+    })
+    ", View::POS_END, 'my-options');
 ?>
 
 <div class="news-form">

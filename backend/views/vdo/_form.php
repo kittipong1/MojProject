@@ -4,9 +4,17 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use app\models\storevdo;
+use yii\web\View;
+
 /* @var $this yii\web\View */
 /* @var $model app\models\vdo */
 /* @var $form yii\widgets\ActiveForm */
+$this->registerJs(" 
+    $(function () {
+    CKEDITOR.replace('vdo-vdo_description')
+    })
+
+    ", View::POS_END, 'my-options');
 ?>
 <?= Html::csrfMetaTags() ?>
 <div class="vdo-form">
