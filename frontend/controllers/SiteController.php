@@ -19,7 +19,7 @@ use app\models\image;
 use app\models\Vdo;
 use app\models\NewsType;
 use yii\data\ActiveDataProvider;
-use app\models\about;
+use app\models\About;
 use app\models\Banner;
 
 /**
@@ -114,6 +114,10 @@ class SiteController extends Controller
         $about = array();
         foreach ($aboutall as $key => $value) {
             $about[$key] = $value;
+
+        $abouts = About::find()->where('about_id')->one();
+        $abouts->about_view ++;
+        $abouts->save();
         }
         return $this->render('aboutus',[
                'about'=>$about,
