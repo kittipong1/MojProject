@@ -3,7 +3,7 @@
 namespace backend\controllers;
 
 use Yii;
-use app\models\About;
+use backend\models\About;
 use backend\models\aboutsearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -67,13 +67,14 @@ class AboutController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
             $model->about_id = 1;
+            $model->user_id = 1;
+            $model->about_view = 0;
             $model->create_date = date('Y-m-d H:i:s');
             $model->midified_date = date('Y-m-d H:i:s');
-            $model->about_view = 0;
-            $model->user_id = 1;
             if($model->save()){
                 $model->save();
             }
+
             return $this->redirect(['index']);
         } else {
             return $this->render('create', [

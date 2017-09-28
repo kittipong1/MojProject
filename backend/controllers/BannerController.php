@@ -15,10 +15,6 @@ use yii\web\UploadedFile;
  */
 class BannerController extends Controller
 {
-    public function beforeAction($action) { 
-     $this->enableCsrfValidation = false; 
-    return parent::beforeAction($action);
-    }
     /**
      * @inheritdoc
      */
@@ -71,19 +67,17 @@ class BannerController extends Controller
         $model = new Banner();
 
         if ($model->load(Yii::$app->request->post())) {
-
-              $file = UploadedFile::getInstance($model, 'banner_img');
-              if($file->size!=0){
-                $model->ban_image = $model->ban_name.'.'.$file->extension;
-                $file->saveAs('../uploads/images/'.$model->ban_name.'.'.$file->extension);
-
-            $model->view = 1;
+            $model->view = 0;
             $model->user_id = 1;
             $model->create_date = date('Y-m-d H:i:s');
             $model->modified_date = date('Y-m-d H:i:s');
-        }
-            $model->save();
 
+            $file = UploadedFile::getInstance($model,'banner');
+            if($file->size!=0){
+                $model->ban_image = $file->name;
+                $file->saveAs('../uploads/images/'.$file->name);
+            }
+            $model->save();
             return $this->redirect(['index']);
         } else {
             return $this->render('create', [
@@ -102,13 +96,14 @@ class BannerController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post())) {
-          $file = UploadedFile::getInstance($model, 'banner_img');
-          if(isset($file->size) && $file->size!==0){
-              $file->saveAs('../uploads/images/'.$model->ban_name.'.'.$file->extension);
-          }
-          $model->save();
-          return $this->redirect(['index']);
+       if ($model->load(Yii::$app->request->post())) {
+            $file = UploadedFile::getInstance($model, 'banner');
+            if(isset($file->size) && $file->size!==0){
+                $model->ban_image = $file->name;
+                $file->saveAs('../uploads/images/'.$file->name);
+            }
+            $model->save();
+            return $this->redirect(['view', 'id' => $model->ban_id]);
         } else {
             return $this->render('update', [
                 'model' => $model,

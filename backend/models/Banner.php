@@ -21,7 +21,7 @@ use Yii;
  */
 class Banner extends \yii\db\ActiveRecord
 {
-    public $banner_img;
+    public $banner;
     /**
      * @inheritdoc
      */
@@ -36,10 +36,10 @@ class Banner extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'ban_name', 'ban_image', 'create_date', 'modified_date', 'start_date', 'end_date', 'view'], 'required'],
+            [['user_id', 'ban_name', 'ban_image', 'create_date', 'modified_date', 'view'], 'required'],
             [['user_id', 'view'], 'integer'],
             [['ban_link', 'ban_image', 'ban_detail'], 'string'],
-            [['banner_img'],'file', 'skipOnEmpty' => true, 'on' => 'update', 'extensions' => 'jpg,png,gif'],
+            [['banner'],'file','skipOnEmpty' => true, 'on' => 'update', 'extensions' => 'jpg,png,gif'],
             [['create_date', 'modified_date', 'start_date', 'end_date'], 'safe'],
             [['ban_name'], 'string', 'max' => 200],
         ];
@@ -56,7 +56,7 @@ class Banner extends \yii\db\ActiveRecord
             'ban_name' => 'Ban Name',
             'ban_link' => 'Ban Link',
             'ban_image' => 'Ban Image',
-            'banner_img' => 'แนบรูปภาพป้ายประชาสัมพันธ์',
+            'banner' => 'แนบรูปภาพป้ายประชาสัมพันธ์',
             'create_date' => 'Create Date',
             'modified_date' => 'Modified Date',
             'start_date' => 'Start Date',

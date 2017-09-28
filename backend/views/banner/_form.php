@@ -67,7 +67,7 @@ $this->registerJs("
     'options' => ['enctype' => 'multipart/form-data']
   ]); ?>
 
-    <?= $form->field($model, 'banner_img')->fileInput() ?>
+    <?= $form->field($model, 'banner')->fileInput() ?>
 
     <?= $form->field($model, 'ban_name')->textInput(['maxlength' => true]) ?>
 
@@ -76,32 +76,36 @@ $this->registerJs("
    <input name="show" type="radio" value="2" onclick="show_table(this.value);" <?= $form->field($model, 'ban_detail')->textarea() ?>
 
     <h3 style="margin-left: 10px;">วันที่เริ่มใช้ - สิ้นสุดการใช้งาน</h3>
-      <div class="container-fuild">
-      <div class='col-md-6'>
-          <div class="form-group">
-              <div class='input-group date' id='banner-start_date'>
-                  <input type='text' class="form-control" name="Banner[start_date]"/>
+    <div class="container-fuild">
+        <div class='col-md-6'>
+            <div class="form-group">
+                <div class='input-group date' id='banner-start_date'>
+                    <?= $form->field($model,'start_date')->textInput();
+                    ?>
                   <span class="input-group-addon">
                       <span class="glyphicon glyphicon-calendar"></span>
                   </span>
-              </div>
-          </div>
-      </div>
-      <div class='col-md-6'>
-          <div class="form-group">
-              <div class='input-group date' id='banner-end_date'>
-                  <input type='text' class="form-control" name="Banner[end_date]"/>
+                </div>
+            </div>
+        </div>
+        <div class='col-md-6'>
+            <div class="form-group">
+                <div class='input-group date' id='banner-end_date'>
+                      <?= $form->field($model,'end_date')->textInput();
+                    ?>
                   <span class="input-group-addon">
                       <span class="glyphicon glyphicon-calendar"></span>
                   </span>
-              </div>
-          </div>
-      </div>
-  </div>
+                  </span>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="form-group" style="margin-left: 12px;">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
+
 </div>

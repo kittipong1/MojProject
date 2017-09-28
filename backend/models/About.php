@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models;
+namespace backend\models;
 
 use Yii;
 
@@ -30,7 +30,7 @@ class About extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['about_id', 'user_id', 'about_description', 'create_date', 'midified_date', 'about_view'], 'required'],
+            [['about_id', 'user_id', 'create_date', 'midified_date', 'about_view'], 'required'],
             [['about_id', 'user_id', 'about_view'], 'integer'],
             [['about_description'], 'string'],
             [['create_date', 'midified_date'], 'safe'],

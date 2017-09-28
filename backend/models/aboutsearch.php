@@ -5,10 +5,10 @@ namespace backend\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\About;
+use backend\models\About;
 
 /**
- * aboutsearch represents the model behind the search form about `app\models\About`.
+ * aboutsearch represents the model behind the search form about `backend\models\About`.
  */
 class aboutsearch extends About
 {

@@ -11,16 +11,15 @@ $this->title = 'Banners';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="box box-primary box-solid">
+
     <div class="box-header">
-
-    <h1 class="box-title"><?= Html::encode($this->title) ?></h1>
-
+        <h1 class="box-title"><?= Html::encode($this->title) ?></h1>
     </div>
+
     <div class="box-body">
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
     <p>
-        <?= Html::a('Create Banner', ['create'], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Create Banner', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -34,16 +33,16 @@ $this->params['breadcrumbs'][] = $this->title;
                 return Html::img('../../../uploads/images/'.$model->ban_image,['class'=> 'thumbnail','width'=>150]);
               }
             ],
-            
-            // 'ban_id',
-            // 'user_id',
+
+            'ban_id',
+            'user_id',
             'ban_name',
             'ban_link:ntext',
             'ban_image',
             // 'create_date',
             // 'modified_date',
-            'start_date',
-            'end_date',
+            // 'start_date',
+            // 'end_date',
             // 'view',
             // 'ban_detail:ntext',
 
