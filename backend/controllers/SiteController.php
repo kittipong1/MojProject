@@ -20,15 +20,16 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
+                'only' => ['signup'],
                 'rules' => [
                     [
                         'actions' => ['login', 'error'],
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['index'],
                         'allow' => true,
-                        'roles' => ['@'],
+                        'roles' => ['admin'],
                     ],
                 ],
             ],
@@ -60,6 +61,13 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        if (!Yii::$app->user->isGuest) {
+            if(Yii::$app->user->identity->auth_status !== 'admin'){
+            Yii::$app->user->logout();
+            return $this->goHome();
+            }
+        }
+        
         $model = Yii::$app->user;
         return $this->render('index',[
             'model'=> $model ,

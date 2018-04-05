@@ -34,7 +34,7 @@ Yii::setAlias('@kmpath', '@web');
       </div>
     </div>
     <!-- End Page Banner -->
-
+  
     <!-- Start Content -->
     <div id="content" class="bg-white">
       <div class="container">
@@ -82,8 +82,8 @@ Yii::setAlias('@kmpath', '@web');
                                 </a>
                               </div>';
                               }
-                              $loopvdomax = end($loopvdo) ;
-                    
+                              
+                            // $loopvdomax = end($loopvdo) ;
                             ?> 
                             <!-- End Memebr 1 -->
                         </div>
@@ -98,7 +98,7 @@ Yii::setAlias('@kmpath', '@web');
                  echo Html::a($i,Url::to(['site/gallery/?id='.$i.'&video=1'])); 
               } ?>
             </div>
-                        </div>
+            </div>
               <!-- End Tab Panels -->
               </div>
               <!--End Video-->
@@ -201,34 +201,7 @@ Yii::setAlias('@kmpath', '@web');
             </div>
 
             <!-- Tags Widget -->
-            <div class="tabs-section widget widget-tags">
-
-              <!-- Nav Tabs -->
-              <ul class="nav nav-tabs">
-                <li class="active"><a href="#" data-toggle="tab"><i class="fa fa-tag"></i>แท็ก</a></li>
-              </ul>
-
-              <!-- Tab panels -->
-              <div class="tab-content">
-                <!-- Tab Content 1 -->
-                <div class="tab-pane fade in active">
-                  <div class="tagcloud">
-                    <a href="#">แท็ก1</a>
-                    <a href="#">แท็ก2</a>
-                    <a href="#">แท็ก3</a>
-                    <a href="#">แท็ก4</a>
-                    <a href="#">แท็ก5</a>
-                    <a href="#">แท็ก6</a>
-                    <a href="#">แท็ก7</a>
-                    <a href="#">แท็ก8</a>
-                    <a href="#">แท็ก9</a>
-                    <a href="#">แท็ก10</a>
-                    <a href="#">แท็ก11</a>
-                  </div>
-                </div>
-              </div>
-              <!-- End Tab Panels -->
-            </div>
+            
           </div>
           <!--End sidebar-->
         </div>

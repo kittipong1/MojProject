@@ -42,12 +42,11 @@ class SiteController extends Controller
                 'only' => ['logout', 'signup'],
                 'rules' => [
                     [
-                        'actions' => ['signup'],
+                        'actions' => ['login','error'],
                         'allow' => true,
-                        'roles' => ['?'],
                     ],
                     [
-                        'actions' => ['logout'],
+                        'actions' => ['logout','index'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -107,7 +106,14 @@ class SiteController extends Controller
             ]);
             
     }
-
+    public function actionActivity(){
+    
+        return $this->render('activity');
+    }
+    public function actionEventcalendar(){
+    
+        return $this->render('eventcalendar');
+    }
     public function actionAboutus()
     {
         $aboutall = About::find()->all();

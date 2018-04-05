@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
-use app\models\album;
+use backend\models\album;
 /* @var $this yii\web\View */
 /* @var $model app\models\image */
 /* @var $form yii\widgets\ActiveForm */

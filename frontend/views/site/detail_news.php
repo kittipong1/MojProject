@@ -66,7 +66,7 @@ Yii::setAlias('@kmpath', '@web');
                   
                     <a class="lightbox" title="'.$news->news_name.'" href="'.Yii::getAlias('@kmpath').'/uploads/news/'.$news->news_type_id.'/'.$news->news_image.'" data-lightbox-gallery="gallery1">
                       <div class="thumb-overlay"><i class="fa fa-arrows-alt"></i></div>
-                      <img alt="" src="'.Yii::getAlias('@kmpath').'/uploads/news/'.$news->news_type_id.'/'.$news->news_image.'" style ="width:848px;height:200px;">
+                      <img alt="" src="'.Yii::getAlias('@kmpath').'/uploads/news/'.$news->news_type_id.'/'.$news->news_image.'" style ="width:848px;height:350px;">
                     </a>
                   </div>
                   

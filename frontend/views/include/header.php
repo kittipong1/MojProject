@@ -30,7 +30,7 @@
                 </button>
                 <!-- End Toggle Nav Link For Mobiles -->
                 <a class="navbar-brand" href="index.php">
-              <img alt="" src="images/logo.png">
+              <img alt="" src="images/logo2.png">
             </a>
             </div>
             <div class="navbar-collapse collapse">

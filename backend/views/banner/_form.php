@@ -71,9 +71,11 @@ $this->registerJs("
 
     <?= $form->field($model, 'ban_name')->textInput(['maxlength' => true]) ?>
 
-   <input name="show" type="radio" value="1" onclick="show_table(this.value);" <?= $form->field($model, 'ban_link')->textarea() ?>
+   <input name="show" type="radio" value="1" onclick="show_table(this.value);"> 
+   <?= $form->field($model, 'ban_link')->textarea() ?>
 
-   <input name="show" type="radio" value="2" onclick="show_table(this.value);" <?= $form->field($model, 'ban_detail')->textarea() ?>
+   <input name="show" type="radio" value="2" onclick="show_table(this.value);">
+   <?= $form->field($model, 'ban_detail')->textarea() ?>
 
     <h3 style="margin-left: 10px;">วันที่เริ่มใช้ - สิ้นสุดการใช้งาน</h3>
     <div class="container-fuild">

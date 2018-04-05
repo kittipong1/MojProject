@@ -14,6 +14,8 @@ use common\widgets\Alert;
 AppAsset::register($this);
 Yii::setAlias('@km', Yii::$app->view->theme->baseUrl); 
 Yii::setAlias('@kmpath', '@web');
+
+
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -23,7 +25,9 @@ Yii::setAlias('@kmpath', '@web');
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
-  <title>E-learning & Knowledge Management</title>
+  <title>สมุดบันทึกกิจกรรมนักศึกษา
+Student Activities of RMUTT
+</title>
     <?php $this->head() ?>
 </head>
 <body>
@@ -32,19 +36,7 @@ Yii::setAlias('@kmpath', '@web');
     <!-- Start Top Bar -->
     <div class="top-bar">
         <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <!-- Start Contact Info -->
-                    <ul class="list-inline pull-right" style="padding: 6px 0">
-                        <li><a href="#"><i class="fa fa-lock"></i> ลงชื่อเข้าใช้งาน</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-plus"></i> สร้างบัญชีเข้าใช้งาน</a>
-                        </li>
-                    </ul>
-                    <!-- End Contact Info -->
-                </div>
-            </div>
-            <!-- .row -->
+            <img src="<?= Yii::getAlias('@kmpath');?>/images/logo2.png" alt="">
         </div>
         <!-- .container -->
     </div>
@@ -53,36 +45,18 @@ Yii::setAlias('@kmpath', '@web');
     <!-- Start  Logo & Naviagtion  -->
     <div class="navbar navbar-default navbar-top" role="navigation" data-spy="affix" data-offset-top="50">
         <div class="container">
-            <div class="navbar-header">
+           <div class="navbar-header">
                 <!-- Stat Toggle Nav Link For Mobiles -->
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <i class="fa fa-bars"></i>
                 </button>
                 <!-- End Toggle Nav Link For Mobiles -->
                 <a class="navbar-brand" href="index.php">
-              <img alt="" src="<?= Yii::getAlias('@kmpath');?>/images/logo.png">
             </a>
             </div>
             <div class="navbar-collapse collapse">
                 <!-- Stat Search -->
-                <div class="search-side">
-
-                  <div class="btn-group dropdown">
-                    <a class="btn btn-default btn-search show-search"><i class="fa fa-search"></i></a>
-                    <div class="search-form">
-                        <form autocomplete="off" role="search" method="get" class="searchform" action="#">
-                            <input type="text" value="" name="s" id="s" placeholder="ค้นหา...">
-                        </form>
-                    </div>
-                    <button type="button" class="btn btn-default btn-search dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <span class="caret"></span>
-                      <span class="sr-only">Toggle Dropdown</span>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-right" style="padding: 0;border: 2px solid #ccc;">
-                      <li><a href="#" style="padding: 5px 14px;">ค้นหาแบบละเอียด</a></li>
-                    </ul>
-                  </div>
-                </div>
+              
                 <!-- End Search -->
                 <!-- Start Navigation List -->
                 <ul class="nav navbar-nav navbar-right">
@@ -90,35 +64,73 @@ Yii::setAlias('@kmpath', '@web');
                         <?= Html::a('หน้าหลัก',Url::to(['site/index'])); ?>
                     </li>
                     <li>
-                    <?= Html::a('เกี่ยวกับเรา',Url::to(['site/aboutus'])); ?>
+                    <?= Html::a('ปฏิทินกิจกรรม',Url::to(['site/eventcalendar'])); ?>
                     </li>
                     <li>
-                    <?= Html::a('กิจกรรม',Url::to(['site/gallery'])); ?>
+                    <?= Html::a('หน่วยงานผู้จัดกิจกรรม',Url::to(['site/activity'])); ?>
                     </li>
                     <li>
-                    <?= Html::a('ประชาสัมพันธ์',Url::to(['site/publicize'])); ?>
+                    <?= Html::a('รายงานผล',Url::to(['site/publicize'])); ?>
                     </li>
                      <li>
-                     <?= Html::a('บทความ',Url::to(['site/article'])); ?>
+                     <?= Html::a('ภาพกิจกรรม',Url::to(['site/gallery'])); ?>
                     </li>
-
                     <li>
-                    <?= Html::a('E-magazine',Url::to(['site/emagazine'])); ?>
+                    <?= Html::a('ติดต่อเรา',Url::to(['site/aboutus'])); ?>
                     </li>
-                    <!-- <li><a href="#">Contact</a></li> -->
+                   
+                    
+
+                    <?php 
+                    if(Yii::$app->user->isGuest){
+                        echo '<li>'.Html::a('เข้าสู่ระบบ',Url::to(['site/login'])).'</li>';
+                    }else{ 
+                       echo   '<li>'.Html::a('เมนู <i class="fa fa-caret-down"></i>','#').'<ul class="dropdown">
+                            <li>'.Html::a('จัดการกิจกรรม',Url::to(['activity/index'])).'</li></ul></li></li><li>'.
+                                Html::a('ออกจากระบบ',['/site/logout'],['data-method' => 'post']).
+                                '';
+                    }
+                     ?>
+                    
+                    
                 </ul>
                 <!-- End Navigation List -->
             </div>
         </div>
         <!-- Mobile Menu Start -->
         <ul class="wpb-mobile-menu">
-            <li>
-            <?= Html::a('หน้าหลัก','index'); ?>
+             <li>
+                <?= Html::a('หน้าหลัก',Url::to(['site/index'])); ?>
             </li>
             <li>
-            <?= Html::a('องค์ความรู้','knowledge'); ?>
+            <?= Html::a('ปฏิทินกิจกรรม',Url::to(['site/aboutus'])); ?>
             </li>
-
+            <li>
+            <?= Html::a('หน่วยงานผู้จัดกิจกรรม',Url::to(['site/aboutus'])); ?>
+            </li>
+            <li>
+            <?= Html::a('รายงานผล',Url::to(['site/publicize'])); ?>
+            </li>
+             <li>
+             <?= Html::a('ภาพกิจกรรม',Url::to(['site/gallery'])); ?>
+            </li>
+            <li>
+            <?= Html::a('ติดต่อเรา',Url::to(['site/aboutus'])); ?>
+            </li>
+           
+            <li>
+            <?php 
+                    if(Yii::$app->user->isGuest){
+                        echo Html::a('เข้าสู่ระบบ',Url::to(['site/login']));
+                    }else{ 
+                       echo  Html::a(
+                                    'ออกจากระบบ',
+                                    ['/site/logout'],
+                                    ['data-method' => 'post']
+                                ) ;
+                    }
+                     ?>
+            </li>
         </ul>
     </div>
 </header>
@@ -131,9 +143,9 @@ Yii::setAlias('@kmpath', '@web');
 </div>
 
 <footer class="footer">
-    <div class="container">
+  
         <?php include (__DIR__ .'../../include/footer.php'); ?>
-    </div>
+   
 </footer>
   <?php include (__DIR__ .'../../include/bottom.php'); ?>
 <?php $this->endBody() ?>

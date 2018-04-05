@@ -3,7 +3,7 @@
 namespace app\models;
 
 use Yii;
-
+use backend\models\Album;
 /**
  * This is the model class for table "image".
  *

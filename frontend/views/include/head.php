@@ -1,5 +1,7 @@
   <!-- Basic -->
-  <title>E-learning & Knowledge Management</title>
+  <title>สมุดบันทึกกิจกรรมนักศึกษา
+Student Activities of RMUTT
+</title>
 
   <!-- Define Charset -->
   <meta charset="utf-8">
@@ -53,7 +55,7 @@
 
   <!-- Margo JS  -->
   <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
-  <script type="text/javascript" src="js/moment.js"></script>
+
   <script type="text/javascript" src="js/jquery.migrate.js"></script>
   <script type="text/javascript" src="js/modernizrr.js"></script>
   <script type="text/javascript" src="asset/js/bootstrap.min.js"></script>
@@ -71,7 +73,7 @@
   <script type="text/javascript" src="js/jquery.parallax.js"></script>
   <script type="text/javascript" src="js/mediaelement-and-player.js"></script>
   <script type="text/javascript" src="js/jquery.slicknav.js"></script>   
-  <script type="text/javascript" src="js/fullcalendar.js"></script>   
+ 
   <script type="text/javascript" src="js/fotorama.js"></script> 
   <script type="text/javascript" src="js/gallery.js"></script>  
   <script type="text/javascript" src="js/th.js"></script>   

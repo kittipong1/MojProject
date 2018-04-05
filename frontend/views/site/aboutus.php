@@ -24,13 +24,13 @@ use yii\helpers\Html;
       <div class="container">
         <div class="row">
           <div class="col-md-6">
-            <h2>เกี่ยวกับเรา</h2>
+            <h2>ติดต่อเรา</h2>
           </div>
           <div class="col-md-6">
             <ul class="breadcrumbs">
 
               <li><?= Html::a('หน้าหลัก','index'); ?></li>
-              <li>เกี่ยวกับเรา</li>
+              <li>ติดต่อเรา</li>
             </ul>
           </div>
         </div>
@@ -49,7 +49,7 @@ use yii\helpers\Html;
           <div class="col-md-9 page-content">
 
             <!-- Classic Heading -->
-            <h4 class="classic-title"><span>ความหมายของ KM (Knowledge Management)</span></h4>
+            <h4 class="classic-title"><span>กองพัฒนานักศึกษา</span></h4>
 
             <!-- Some Text -->
             <p>
@@ -57,7 +57,7 @@ use yii\helpers\Html;
                 <td><?= $about->about_description; ?></td>  
               <?php endforeach; ?>
             </p>
-
+            <p><iframe width="640" height="480" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.co.th/maps?q=14.036395,100.724346&amp;num=1&amp;ie=UTF8&amp;t=m&amp;ll=14.036343,100.724459&amp;spn=0.039969,0.054932&amp;z=14&amp;output=embed"></iframe><br><small><a href="https://maps.google.co.th/maps?q=14.036395,100.724346&amp;num=1&amp;ie=UTF8&amp;t=m&amp;ll=14.036343,100.724459&amp;spn=0.039969,0.054932&amp;z=14&amp;source=embed" style="color:#0000FF;text-align:left" target="_blank">ดูแผนที่ขนาดใหญ่ขึ้น</a></small></p>
             <!-- Divider -->
             <!--<div class="hr5" style="margin-top:30px; margin-bottom:45px;"></div>
 

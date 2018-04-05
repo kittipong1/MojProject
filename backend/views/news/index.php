@@ -7,7 +7,7 @@ use app\models\Language;
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\newssearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-
+Yii::setAlias('@demo01', '@web');
 $this->title = 'News';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -40,12 +40,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'news_name',
             // 'news_explain',
              ['attribute'=>'news_image',
+             'filter'=>'',
             'contentOptions' => ['class' => 'text-center'],
             'headerOptions' => ['class' => 'text-center'],
             'format'=>'html',
             'value'=> function($model){
                 if($model->news_image!=''){
-                    return '<img src="../uploads/news/'.$model->news_type_id.'/'.$model->news_image.'" style="width: 200px;height: 200px;">';
+                    return '<img src="'.Yii::getAlias('@demo01').'../../uploads/news/'.$model->news_type_id.'/'.$model->news_image.'" style="width: 200px;height: 200px;">';
                 }
             }],
             // 'create_date',

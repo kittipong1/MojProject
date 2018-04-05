@@ -1,3 +1,12 @@
+<?php 
+use yii\helpers\Url;
+if(Yii::$app->user->isGuest){
+   header('Location:'.Url::to(['login']));
+   exit();
+}
+ ?>
+}
+
 <aside class="main-sidebar">
 
     <section class="sidebar">
@@ -52,44 +61,51 @@
                     //     ],
                     // ],
                     [
-                        'label' => 'การจัดการ VDO',
-                        'icon' => 'video-camera',
+                        'label' => 'จัดการ User',
                         'url' => '#',
                         'items' => [
-                            ['label' => 'เพิ่ม VDO', 'icon' => 'plus', 'url' => ['/vdo/create'],],
-                            ['label' => 'รายการ VDO ', 'icon' => 'book', 'url' => ['/vdo/index'],],
-],
-            ],['label' => 'ประเภทคลัง VDO', 'icon' => 'file-video-o', 'url' => ['/storevdo']],
-             [
-                        'label' => 'การจัดการข่าวสาร',
-                        'icon' => 'newspaper-o',
-                        'url' => '#',
-                        'items' => [
-                            ['label' => 'เพิ่มข่าวสาร', 'icon' => 'plus', 'url' => ['/news/create'],],
-                            ['label' => 'รายการข่าวสาร ', 'icon' => 'book', 'url' => ['/news/index'],],
-],
+                            ['label' => 'เพิ่ม User', 'icon' => 'plus', 'url' => ['/usermanager/create'],],
+                            ['label' => 'รายการ User ', 'icon' => 'book', 'url' => ['/usermanager/index'],],
+],],
+//                     [
+//                         'label' => 'การจัดการ VDO',
+//                         'icon' => 'video-camera',
+//                         'url' => '#',
+//                         'items' => [
+//                             ['label' => 'เพิ่ม VDO', 'icon' => 'plus', 'url' => ['/vdo/create'],],
+//                             ['label' => 'รายการ VDO ', 'icon' => 'book', 'url' => ['/vdo/index'],],
+// ],
+//             ],['label' => 'ประเภทคลัง VDO', 'icon' => 'file-video-o', 'url' => ['/storevdo']],
+//              [
+//                         'label' => 'การจัดการข่าวสาร',
+//                         'icon' => 'newspaper-o',
+//                         'url' => '#',
+//                         'items' => [
+//                             ['label' => 'เพิ่มข่าวสาร', 'icon' => 'plus', 'url' => ['/news/create'],],
+//                             ['label' => 'รายการข่าวสาร ', 'icon' => 'book', 'url' => ['/news/index'],],
+// ],
             
-            ],
-            ['label' => 'ประเภทข่าวสาร', 'icon' => 'clipboard', 'url' => ['/news_type']],
+//             ],
+//             ['label' => 'ประเภทข่าวสาร', 'icon' => 'clipboard', 'url' => ['/news_type']],
             
-             [
-                        'label' => 'การจัดการรูปอัลบัมรูปภาพ',
-                        'icon' => 'image',
-                        'url' => '#',
-                        'items' => [
-                            ['label' => 'เพิ่มรูปภาพ', 'icon' => 'plus', 'url' => ['/image/create'],],
-                            ['label' => 'รายการอัลบัมรูปภาพ ', 'icon' => 'book', 'url' => ['/image/index'],],
-],
+//              [
+//                         'label' => 'การจัดการรูปอัลบัมรูปภาพ',
+//                         'icon' => 'image',
+//                         'url' => '#',
+//                         'items' => [
+//                             ['label' => 'เพิ่มรูปภาพ', 'icon' => 'plus', 'url' => ['/image/create'],],
+//                             ['label' => 'รายการอัลบัมรูปภาพ ', 'icon' => 'book', 'url' => ['/image/index'],],
+// ],
             
-            ],
-            ['label' => 'ปรเภทคลังอัลบัมรูปภาพ', 'icon' => 'file-image-o', 'url' => ['/album']],
+//             ],
+//             ['label' => 'ปรเภทคลังอัลบัมรูปภาพ', 'icon' => 'file-image-o', 'url' => ['/album']],
 
             [
                         'label' => 'การจัดการเกี่ยวกับเรา',
                         'icon' => 'file-text-o',
                         'url' => '#',
                         'items' => [
-                            ['label' => 'เพิ่มเกี่ยวกับเรา', 'icon' => 'plus', 'url' => ['/about/create'],],
+                            // ['label' => 'เพิ่มเกี่ยวกับเรา', 'icon' => 'plus', 'url' => ['/about/create'],],
                             ['label' => 'รายการเกี่ยวกับเรา ', 'icon' => 'book', 'url' => ['/about/index'],],
 ],
             
@@ -97,7 +113,7 @@
 
             [
                         'label' => 'การจัดการเกี่ยวกับ banner',
-                        'icon' => 'minus',
+                       
                         'url' => '#',
                         'items' => [
                             ['label' => 'เพิ่ม banner', 'icon' => 'plus', 'url' => ['/banner/create'],],

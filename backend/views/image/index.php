@@ -3,11 +3,11 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
-use app\models\album;
+use backend\models\album;
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\imagesearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-
+Yii::setAlias('@demo01', '@web');
 $this->title = 'Images';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -39,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'format'=>'html',
             'value'=> function($model){
                 if($model->path!=''){
-                    return '<img src="../uploads/images/'.$model->path.'" style="width: 200px;height: 200px;">';
+                    return '<img src="'.Yii::getAlias('@demo01').'../../uploads/images/'.$model->path.'" style="width: 200px;height: 200px;">';
                 }
             }],
              ['attribute'=>'status',
